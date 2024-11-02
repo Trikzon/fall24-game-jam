@@ -1,14 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ho38ers7rqok"]
+[gd_scene load_steps=4 format=3 uid="uid://ho38ers7rqok"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_dlxyg"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4oocx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aui11"]
-albedo_color = Color(0, 0.670588, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_p83l5"]
-size = Vector3(0.5, 0.5, 0.5)
+[ext_resource type="PackedScene" uid="uid://bn6ec5c7ftjue" path="res://assets/models/Orka.blend" id="2_e15fx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lf4up"]
 
@@ -17,14 +10,8 @@ script = ExtResource("1_dlxyg")
 ground_raycast_back = NodePath("GroundRaycastBack")
 ground_raycast_front = NodePath("GroundRaycastFront")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_4oocx")
-surface_material_override/0 = SubResource("StandardMaterial3D_aui11")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00223994, -0.807622, 5.12139e-07)
-mesh = SubResource("BoxMesh_p83l5")
+[node name="OrkaBlendModel" parent="." instance=ExtResource("2_e15fx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.932643, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

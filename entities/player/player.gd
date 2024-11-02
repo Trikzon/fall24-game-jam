@@ -14,6 +14,7 @@ func _physics_process(delta):
 		velocity -= camera_target.transform.basis.z * ACCELERATION * delta
 		rotation.y = lerp_angle(rotation.y, camera_target.rotation.y, 10 * delta)
 		rotation.x = lerp_angle(rotation.x, camera_target.rotation.x, 10 * delta)
+		$OrkaBlendModel.get_child(1).play("ArmatureAction")
 	else:
 		velocity = lerp(velocity, Vector3.ZERO, 2 * delta)
 	
