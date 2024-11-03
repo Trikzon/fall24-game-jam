@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_dlxyg"]
 [ext_resource type="PackedScene" uid="uid://bn6ec5c7ftjue" path="res://assets/models/Orka.blend" id="2_e15fx"]
-[ext_resource type="AudioStream" uid="uid://dm52jt4r8wb5f" path="res://assets/orkanoises/Attack.mp3" id="3_cvcn5"]
+[ext_resource type="AudioStream" uid="uid://cb2m6fgplvsp4" path="res://assets/orkanoises/Orka Attack.mp3" id="3_mimdx"]
 [ext_resource type="AudioStream" uid="uid://lm51p0ow8vc8" path="res://assets/orkanoises/Orka noise 2.mp3" id="4_bwfmm"]
 [ext_resource type="AudioStream" uid="uid://q1r18kbban1q" path="res://assets/orkanoises/Dash SFXFade.mp3" id="5_gbxbf"]
 
@@ -41,17 +41,18 @@ wait_time = 6.0
 one_shot = true
 
 [node name="AttackNoise" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_cvcn5")
-volume_db = 0.2
+stream = ExtResource("3_mimdx")
+volume_db = -22.784
+max_db = 1.378
 pitch_scale = 1.36
 
 [node name="Idle1" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_bwfmm")
-volume_db = 0.2
+volume_db = -20.645
 pitch_scale = 1.39
 
 [node name="DashSFX" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_gbxbf")
-volume_db = 0.3
+volume_db = -34.235
 max_db = 1.13
 pitch_scale = 0.97

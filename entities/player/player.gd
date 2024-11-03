@@ -65,6 +65,7 @@ func _physics_process(delta):
 	if(Input.is_action_pressed("Rise")):
 		velocity.y += RISE_SPEED * delta
 	if(Input.is_action_pressed("Dash") and dash_timer.is_stopped() and dash_cooldown_timer.is_stopped()):
+		$DashSFX.play()
 		dash_timer.start()
 		dash_cooldown_timer.start()
 		incrementalDash=0

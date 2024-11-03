@@ -36,10 +36,11 @@ func _physics_process(delta):
 		_on_navigation_agent_3d_velocity_computed(new_velocity)
 	
 func attack():
-	animation_player.stop()
+	#animation_player.stop()
 	velocity=Vector3.ZERO
 	if(attack_cooldown.is_stopped()):
 		target_nest.health-=1
+		$SharkAttackNoise.play()
 		attack_cooldown.start()
 	return
 

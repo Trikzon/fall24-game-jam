@@ -157,7 +157,7 @@ waves = Array[ExtResource("9_w6ld8")]([SubResource("Resource_xyusy"), SubResourc
 enemy_scene = ExtResource("4_7a876")
 
 [node name="Spawner" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77093, -39.5999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.0289, 1.77093, -0.633354)
 mesh = SubResource("BoxMesh_0vjt7")
 skeleton = NodePath("../..")
 
