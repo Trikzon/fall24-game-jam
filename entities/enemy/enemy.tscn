@@ -21,5 +21,6 @@ shape = SubResource("CapsuleShape3D_tc1bq")
 avoidance_enabled = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
