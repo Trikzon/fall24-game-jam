@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var main_scene: PackedScene = load("res://scenes/main/main.tscn")
+@onready var begin_scene: PackedScene = load("res://scenes/Begining Explantion/intro_scene.tscn")
 @onready var orca_anim_player: AnimationPlayer = $OrkaBlendModel/AnimationPlayer
 
 
@@ -9,4 +9,4 @@ func _process(delta):
 
 
 func _on_button_pressed():
-	get_tree().change_scene_to_packed(main_scene)
+	get_tree().change_scene_to_packed(begin_scene)
