@@ -83,7 +83,7 @@ mouse_default_cursor_shape = 2
 theme = SubResource("Theme_t4lt7")
 text = "Play"
 
-[node name="Orka2" parent="." instance=ExtResource("3_cvomj")]
+[node name="OrkaBlendModel" parent="." instance=ExtResource("3_cvomj")]
 transform = Transform3D(0.906877, -0.0681767, -0.415845, 0.0464286, 0.996983, -0.062201, 0.418831, 0.0371016, 0.907306, 0.44405, 0.803609, 2.60521)
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
