@@ -78,7 +78,7 @@ spring_length = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_7void")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7165, 6.17813)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82032, 6.17813)
 camera_target = NodePath("../Camera/CameraTarget")
 
 [node name="PauseUI" type="ColorRect" parent="."]
