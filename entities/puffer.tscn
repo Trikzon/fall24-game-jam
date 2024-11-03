@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://brmwnh2idrvhu"]
+
+[ext_resource type="PackedScene" uid="uid://yim6r6v4xxo7" path="res://assets/models/pufferfishblow.blend" id="1_0cw3r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c480a"]
+radius = 4.408
+
+[node name="Puffer" type="RigidBody3D"]
+
+[node name="pufferfishblow" parent="." instance=ExtResource("1_0cw3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.242241, 0, -0.301786)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_c480a")

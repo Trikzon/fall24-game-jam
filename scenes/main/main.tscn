@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dy2njnd0jev5t"]
+[gd_scene load_steps=22 format=3 uid="uid://dy2njnd0jev5t"]
 
 [ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_c8021"]
 [ext_resource type="PackedScene" uid="uid://ho38ers7rqok" path="res://entities/player/player.tscn" id="3_7void"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dkscjy4x44ql5" path="res://entities/spawner/spawner.tscn" id="8_ilgwf"]
 [ext_resource type="Script" path="res://resources/wave/wave.gd" id="9_w6ld8"]
 [ext_resource type="PackedScene" uid="uid://bklpqsoc7k6fw" path="res://assets/models/Eggs.blend" id="11_hhgy8"]
+[ext_resource type="AudioStream" uid="uid://caotvhhwelnop" path="res://assets/music/cinematic-tense-trailer-198846.mp3" id="12_yfb3b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_puhdw"]
 font = ExtResource("5_kqx83")
@@ -146,6 +147,13 @@ text = "Quit To Main Menu"
 [node name="Player" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_7void")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98116, 6.17813)
 camera_target = NodePath("../Camera/CameraTarget")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.98116, -6.17813)
+stream = ExtResource("12_yfb3b")
+volume_db = -28.965
+autoplay = true
+parameters/looping = true
 
 [node name="Nest" parent="." instance=ExtResource("7_1agqp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.7396, 2.25645, -13.6177)

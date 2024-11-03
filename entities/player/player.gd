@@ -8,6 +8,7 @@ const RISE_SPEED = 5.0
 @export var ground_raycast_back: RayCast3D
 @export var ground_raycast_front: RayCast3D
 
+@onready var puffer: PackedScene = load("res://entities/puffer.tscn")
 @onready var blast_scene: PackedScene = load("res://entities/Attacks/blast.tscn")
 @onready var blast_cooldown_timer: Timer = $BlastCooldownTimer
 @onready var dash_timer: Timer = $DashTimer
@@ -60,6 +61,11 @@ func _physics_process(delta):
 		
 	#if not ground_raycast_front.is_colliding() and not ground_raycast_front.is_colliding():
 		#velocity += get_gravity() * delta
+		#puffer
+	if Input.is_action_just_pressed("puffer"):
+		puffer.instantiate()
+	
+		
 	
 	velocity = velocity.clamp(Vector3.ONE * -MAX_SPEED, Vector3.ONE * MAX_SPEED)
 	if(Input.is_action_pressed("Rise")):
