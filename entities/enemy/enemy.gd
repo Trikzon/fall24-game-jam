@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody3D
 
 
@@ -29,6 +30,6 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 	
 	rotation.y = lerp_angle(rotation.y, atan2(velocity.x, velocity.z), 10 * 0.016)
-	animation_player.play("ArmatureAction")
+	animation_player.play("Swim")
 	
 	move_and_slide()
