@@ -143,11 +143,11 @@ theme_override_font_sizes/font_size = 48
 text = "Quit To Main Menu"
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_7void")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7165, 6.17813)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98116, 6.17813)
 camera_target = NodePath("../Camera/CameraTarget")
 
 [node name="Nest" parent="." instance=ExtResource("7_1agqp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.22028, 0.38966, -9.42355)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.7396, 2.25645, -13.6177)
 
 [node name="SpawnerManager" type="Node3D" parent="." node_paths=PackedStringArray("target_nest")]
 script = ExtResource("8_fk17j")
@@ -164,10 +164,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.02677, 1.95303, -39.5999)
 mesh = SubResource("BoxMesh_ousas")
 skeleton = NodePath("../Spawner")
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("target_nest") instance=ExtResource("4_7a876")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00819, -12.2109)
-target_nest = NodePath("../Nest")
 
 [connection signal="pressed" from="PauseUI/VBoxContainer/ResumeButton" to="PauseUI" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseUI/VBoxContainer/ToMainMenuButton" to="PauseUI" method="_on_to_main_menu_button_pressed"]

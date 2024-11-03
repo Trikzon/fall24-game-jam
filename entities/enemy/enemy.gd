@@ -39,7 +39,7 @@ func attack():
 	animation_player.stop()
 	velocity=Vector3.ZERO
 	if(attack_cooldown.is_stopped()):
-		target_nest
+		target_nest.health-=1
 		attack_cooldown.start()
 	return
 

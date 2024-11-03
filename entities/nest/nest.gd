@@ -1,12 +1,12 @@
 class_name Nest
 extends MeshInstance3D
-
-
+const MAX = 10
+var health
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	health=MAX
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if(health==0):
+		pass
