@@ -144,14 +144,7 @@ text = "Quit To Main Menu"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98116, 6.17813)
 camera_target = NodePath("../Camera/CameraTarget")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.98116, -6.17813)
-stream = ExtResource("12_yfb3b")
-volume_db = -28.965
-autoplay = true
-parameters/looping = true
-
-[node name="Nest" parent="." node_paths=PackedStringArray("eggs") instance=ExtResource("7_1agqp")]
+[node name="Nest" parent="." instance=ExtResource("7_1agqp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.7396, 2.25645, -13.6177)
 eggs = NodePath("../Eggs")
 
@@ -173,6 +166,13 @@ skeleton = NodePath("../Spawner")
 
 [node name="Eggs" parent="." instance=ExtResource("11_hhgy8")]
 transform = Transform3D(4.055, 0, 0, 0, 4.055, 0, 0, 0, 4.055, 39.7943, 2.21933, -15.6213)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("12_yfb3b")
+volume_db = -28.965
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="PauseUI/VBoxContainer/ResumeButton" to="PauseUI" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseUI/VBoxContainer/ToMainMenuButton" to="PauseUI" method="_on_to_main_menu_button_pressed"]

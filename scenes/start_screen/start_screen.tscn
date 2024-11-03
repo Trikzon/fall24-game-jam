@@ -13,9 +13,9 @@ outline_size = 16
 shadow_size = 4
 shadow_color = Color(0.0885599, 0.0885599, 0.0885599, 0)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yny0i"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_67xmg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mye1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpm44"]
 bg_color = Color(0.827451, 0.827451, 0.827451, 0.666667)
 border_width_left = 4
 border_width_top = 4
@@ -38,10 +38,10 @@ Button/colors/font_pressed_color = Color(0, 0.0941176, 0.0941176, 1)
 Button/constants/outline_size = 8
 Button/font_sizes/font_size = 100
 Button/fonts/font = ExtResource("2_yh34j")
-Button/styles/disabled = SubResource("StyleBoxEmpty_yny0i")
-Button/styles/hover = SubResource("StyleBoxFlat_7mye1")
-Button/styles/normal = SubResource("StyleBoxFlat_7mye1")
-Button/styles/pressed = SubResource("StyleBoxFlat_7mye1")
+Button/styles/disabled = SubResource("StyleBoxEmpty_67xmg")
+Button/styles/hover = SubResource("StyleBoxFlat_qpm44")
+Button/styles/normal = SubResource("StyleBoxFlat_qpm44")
+Button/styles/pressed = SubResource("StyleBoxFlat_qpm44")
 
 [node name="StartScreen" type="Node3D"]
 script = ExtResource("1_sokkl")
@@ -49,7 +49,7 @@ script = ExtResource("1_sokkl")
 [node name="NavigationRegion3D" parent="." instance=ExtResource("1_rog6u")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.646057, 0, -0.763289, 0, 1, 0, 0.763289, 0, -0.646057, 30.4441, 9.33141, -18.7885)
+transform = Transform3D(-0.79692, 0, -0.604085, 0, 1, 0, 0.604085, 0, -0.79692, 0, 3.89237, 0)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -83,6 +83,6 @@ theme = SubResource("Theme_t4lt7")
 text = "Play"
 
 [node name="OrkaBlendModel" parent="." instance=ExtResource("3_cvomj")]
-transform = Transform3D(0.906877, -0.0681767, -0.415845, 0.0464286, 0.996983, -0.062201, 0.418831, 0.0371016, 0.907306, 31.7523, 8.54454, -15.8974)
+transform = Transform3D(0.906877, -0.0681767, -0.415845, 0.0464286, 0.996983, -0.062201, 0.418831, 0.0371016, 0.907306, 0.44405, 2.97079, 2.60521)
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
