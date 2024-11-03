@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bn6ec5c7ftjue" path="res://assets/models/Orka.blend" id="2_e15fx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lf4up"]
+height = 3.0
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("ground_raycast_back", "ground_raycast_front")]
 script = ExtResource("1_dlxyg")
@@ -14,7 +15,7 @@ ground_raycast_front = NodePath("GroundRaycastFront")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.932643, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.160047, 0)
 shape = SubResource("CapsuleShape3D_lf4up")
 
 [node name="GroundRaycastBack" type="RayCast3D" parent="."]
