@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6om2hhfiw3jj"]
+
+[ext_resource type="Script" path="res://entities/nest/nest.gd" id="1_0krmh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_33uov"]
+radius = 0.2
+height = 0.7
+
+[node name="Nest" type="MeshInstance3D"]
+mesh = SubResource("CapsuleMesh_33uov")
+script = ExtResource("1_0krmh")

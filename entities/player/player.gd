@@ -2,17 +2,22 @@ extends CharacterBody3D
 
 const ACCELERATION = 5.0
 const MAX_SPEED = 5.0
+const RISE_SPEED = 5.0
 
 @export var camera_target: Node3D
 @export var ground_raycast_back: RayCast3D
 @export var ground_raycast_front: RayCast3D
 
 @onready var blast_scene: PackedScene = load("res://entities/Attacks/blast.tscn")
-
+@onready var blast_cooldown_timer: Timer = $BlastCooldownTimer
+@onready var dash_timer: Timer = $DashTimer
+@onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var incrementalDash = 1
 
 func _process(delta):
 	#attack
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack") and blast_cooldown_timer.is_stopped():
+		blast_cooldown_timer.start()
 		var blast: Blast = blast_scene.instantiate()
 		add_sibling(blast)
 		blast.position = position
@@ -52,5 +57,19 @@ func _physics_process(delta):
 		#velocity += get_gravity() * delta
 	
 	velocity = velocity.clamp(Vector3.ONE * -MAX_SPEED, Vector3.ONE * MAX_SPEED)
-	
+	if(Input.is_action_pressed("Rise")):
+		velocity.y += RISE_SPEED * delta
+	if(Input.is_action_pressed("Dash") and dash_timer.is_stopped() and dash_cooldown_timer.is_stopped()):
+		dash_timer.start()
+		dash_cooldown_timer.start()
+		incrementalDash=0
+	if(not dash_timer.is_stopped()):	
+		velocity = -camera_target.transform.basis.z * ACCELERATION * delta * 200
+		incrementalDash+=1
+		if(incrementalDash%16==0):
+			var blast: Blast = blast_scene.instantiate()
+			add_sibling(blast)
+			blast.position = position
+			blast.transform.basis.z += 3.75 * Vector3(1,1,1)
+			blast.rotation = rotation
 	move_and_slide()

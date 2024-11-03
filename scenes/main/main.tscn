@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy2njnd0jev5t"]
+[gd_scene load_steps=20 format=3 uid="uid://dy2njnd0jev5t"]
 
 [ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_c8021"]
 [ext_resource type="PackedScene" uid="uid://ho38ers7rqok" path="res://entities/player/player.tscn" id="3_7void"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://de411ixbvfhml" path="res://entities/enemy/enemy.tscn" id="4_7a876"]
 [ext_resource type="FontFile" uid="uid://djdpk7o8qwjdw" path="res://assets/fonts/storm_gust/Storm Gust.ttf" id="5_kqx83"]
 [ext_resource type="Script" path="res://scenes/main/pause_ui.gd" id="5_vqf55"]
+[ext_resource type="PackedScene" uid="uid://c6om2hhfiw3jj" path="res://entities/nest/nest.tscn" id="7_1agqp"]
+[ext_resource type="Script" path="res://scenes/main/spawner_manager.gd" id="8_fk17j"]
+[ext_resource type="PackedScene" uid="uid://dkscjy4x44ql5" path="res://entities/spawner/spawner.tscn" id="8_ilgwf"]
+[ext_resource type="Script" path="res://resources/wave/wave.gd" id="9_w6ld8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_puhdw"]
 font = ExtResource("5_kqx83")
@@ -59,6 +63,22 @@ Button/styles/hover = SubResource("StyleBoxFlat_uf0fc")
 Button/styles/normal = SubResource("StyleBoxFlat_uf0fc")
 Button/styles/pressed = SubResource("StyleBoxFlat_uf0fc")
 
+[sub_resource type="Resource" id="Resource_xyusy"]
+script = ExtResource("9_w6ld8")
+enemy_count = 5
+
+[sub_resource type="Resource" id="Resource_u5vic"]
+script = ExtResource("9_w6ld8")
+enemy_count = 8
+
+[sub_resource type="BoxMesh" id="BoxMesh_0vjt7"]
+resource_local_to_scene = true
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ousas"]
+resource_local_to_scene = true
+size = Vector3(2, 1, 1)
+
 [node name="Main" type="Node3D"]
 
 [node name="Terrain" parent="." instance=ExtResource("1_c8021")]
@@ -76,10 +96,6 @@ spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="Camera/CameraTarget/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-
-[node name="Player" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_7void")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7165, 6.17813)
-camera_target = NodePath("../Camera/CameraTarget")
 
 [node name="PauseUI" type="ColorRect" parent="."]
 process_mode = 3
@@ -126,8 +142,32 @@ theme = SubResource("Theme_tw3cc")
 theme_override_font_sizes/font_size = 48
 text = "Quit To Main Menu"
 
-[node name="Enemy" parent="." instance=ExtResource("4_7a876")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.899216, -19.4558)
+[node name="Player" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_7void")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7165, 6.17813)
+camera_target = NodePath("../Camera/CameraTarget")
+
+[node name="Nest" parent="." instance=ExtResource("7_1agqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.22028, 0.38966, -9.42355)
+
+[node name="SpawnerManager" type="Node3D" parent="." node_paths=PackedStringArray("target_nest")]
+script = ExtResource("8_fk17j")
+target_nest = NodePath("../Nest")
+waves = Array[ExtResource("9_w6ld8")]([SubResource("Resource_xyusy"), SubResource("Resource_u5vic")])
+enemy_scene = ExtResource("4_7a876")
+
+[node name="Spawner" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77093, -39.5999)
+mesh = SubResource("BoxMesh_0vjt7")
+skeleton = NodePath("../..")
+
+[node name="Spawner2" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.02677, 1.95303, -39.5999)
+mesh = SubResource("BoxMesh_ousas")
+skeleton = NodePath("../Spawner")
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("target_nest") instance=ExtResource("4_7a876")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00819, -12.2109)
+target_nest = NodePath("../Nest")
 
 [connection signal="pressed" from="PauseUI/VBoxContainer/ResumeButton" to="PauseUI" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseUI/VBoxContainer/ToMainMenuButton" to="PauseUI" method="_on_to_main_menu_button_pressed"]

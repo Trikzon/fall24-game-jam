@@ -20,3 +20,6 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body is Enemy:
 		body.take_damage()
+	elif body is Terrain3D:
+		await get_tree().create_timer(0.25).timeout
+		queue_free()

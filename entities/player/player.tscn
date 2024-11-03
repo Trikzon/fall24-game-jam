@@ -25,3 +25,14 @@ target_position = Vector3(0, -2, 0)
 [node name="GroundRaycastFront" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 target_position = Vector3(0, -2, 0)
+
+[node name="BlastCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true

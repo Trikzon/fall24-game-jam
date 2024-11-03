@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkscjy4x44ql5"]
+
+[ext_resource type="Script" path="res://entities/spawner/spawner.gd" id="1_kponc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cored"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wn6s6"]
+transparency = 1
+albedo_color = Color(1, 0.25, 0.25, 0.333333)
+
+[node name="Spawner" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_cored")
+surface_material_override/0 = SubResource("StandardMaterial3D_wn6s6")
+script = ExtResource("1_kponc")
