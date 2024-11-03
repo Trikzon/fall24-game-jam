@@ -424,6 +424,13 @@ sky_material = SubResource("ProceduralSkyMaterial_00632")
 [sub_resource type="Environment" id="Environment_e7xew"]
 background_mode = 2
 sky = SubResource("Sky_y1p8j")
+fog_enabled = true
+fog_light_color = Color(0.271364, 0.63438, 0.911754, 1)
+fog_density = 0.0005
+volumetric_fog_density = 0.4352
+volumetric_fog_albedo = Color(0, 0.535452, 0.878358, 1)
+volumetric_fog_emission = Color(0.519637, 0.412174, 0.134511, 1)
+volumetric_fog_length = 3.17
 
 [node name="Terrain" type="Node3D"]
 

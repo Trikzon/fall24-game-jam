@@ -171,6 +171,7 @@ skeleton = NodePath("../Spawner")
 transform = Transform3D(4.055, 0, 0, 0, 4.055, 0, 0, 0, 4.055, 39.7943, 2.21933, -15.6213)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("12_yfb3b")
 volume_db = -28.965
 autoplay = true
