@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bnvoadio7jjre"
+path="res://.godot/imported/Dash SFX.mp3-a16b02cfbf52255c426a03fcc5deaf50.mp3str"
+
+[deps]
+
+source_file="res://assets/orkanoises/Dash SFX.mp3"
+dest_files=["res://.godot/imported/Dash SFX.mp3-a16b02cfbf52255c426a03fcc5deaf50.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

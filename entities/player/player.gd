@@ -23,6 +23,10 @@ func _process(delta):
 		blast.position = position
 		blast.transform.basis.z += 3.75 * Vector3(1,1,1)
 		blast.rotation = rotation
+		if (randi_range(0,1) == 0):
+			$AttackNoise.play()
+		else:
+			$Idle1.play()
 		
 		await get_tree().create_timer(0.1).timeout
 		
@@ -42,6 +46,7 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	
 	if Input.is_action_pressed("player_forward"):
 		velocity -= camera_target.transform.basis.z * ACCELERATION * delta
 		rotation.y = lerp_angle(rotation.y, camera_target.rotation.y, 10 * delta)

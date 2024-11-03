@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://q1r18kbban1q"
+path="res://.godot/imported/Dash SFXFade.mp3-15a626ece99d74e5113d77528233c788.mp3str"
+
+[deps]
+
+source_file="res://assets/orkanoises/Dash SFXFade.mp3"
+dest_files=["res://.godot/imported/Dash SFXFade.mp3-15a626ece99d74e5113d77528233c788.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dy2njnd0jev5t"]
+[gd_scene load_steps=21 format=3 uid="uid://dy2njnd0jev5t"]
 
 [ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_c8021"]
 [ext_resource type="PackedScene" uid="uid://ho38ers7rqok" path="res://entities/player/player.tscn" id="3_7void"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/main/spawner_manager.gd" id="8_fk17j"]
 [ext_resource type="PackedScene" uid="uid://dkscjy4x44ql5" path="res://entities/spawner/spawner.tscn" id="8_ilgwf"]
 [ext_resource type="Script" path="res://resources/wave/wave.gd" id="9_w6ld8"]
+[ext_resource type="PackedScene" uid="uid://bklpqsoc7k6fw" path="res://assets/models/Eggs.blend" id="11_hhgy8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_puhdw"]
 font = ExtResource("5_kqx83")
@@ -164,6 +165,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.02677, 1.95303, -39.5999)
 mesh = SubResource("BoxMesh_ousas")
 skeleton = NodePath("../Spawner")
+
+[node name="Eggs" parent="." instance=ExtResource("11_hhgy8")]
+transform = Transform3D(4.055, 0, 0, 0, 4.055, 0, 0, 0, 4.055, 39.7943, 2.21933, -15.6213)
 
 [connection signal="pressed" from="PauseUI/VBoxContainer/ResumeButton" to="PauseUI" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseUI/VBoxContainer/ToMainMenuButton" to="PauseUI" method="_on_to_main_menu_button_pressed"]

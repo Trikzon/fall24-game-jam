@@ -57,6 +57,7 @@ func take_damage():
 	health -= 1
 	if health <= 0 and not is_dead:
 		is_dead = true
+		$SharkDeathNoise.play()
 		animation_player.play("Die")
 		await animation_player.animation_finished
 		await get_tree().create_timer(0.5).timeout
