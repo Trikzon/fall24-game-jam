@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dy2njnd0jev5t"]
+[gd_scene load_steps=21 format=3 uid="uid://dy2njnd0jev5t"]
 
 [ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_c8021"]
 [ext_resource type="PackedScene" uid="uid://ho38ers7rqok" path="res://entities/player/player.tscn" id="3_7void"]
@@ -68,10 +68,6 @@ Button/styles/pressed = SubResource("StyleBoxFlat_uf0fc")
 [sub_resource type="Resource" id="Resource_xyusy"]
 script = ExtResource("9_w6ld8")
 enemy_count = 5
-
-[sub_resource type="Resource" id="Resource_u5vic"]
-script = ExtResource("9_w6ld8")
-enemy_count = 8
 
 [sub_resource type="BoxMesh" id="BoxMesh_0vjt7"]
 resource_local_to_scene = true
@@ -155,13 +151,14 @@ volume_db = -28.965
 autoplay = true
 parameters/looping = true
 
-[node name="Nest" parent="." instance=ExtResource("7_1agqp")]
+[node name="Nest" parent="." node_paths=PackedStringArray("eggs") instance=ExtResource("7_1agqp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.7396, 2.25645, -13.6177)
+eggs = NodePath("../Eggs")
 
 [node name="SpawnerManager" type="Node3D" parent="." node_paths=PackedStringArray("target_nest")]
 script = ExtResource("8_fk17j")
 target_nest = NodePath("../Nest")
-waves = Array[ExtResource("9_w6ld8")]([SubResource("Resource_xyusy"), SubResource("Resource_u5vic")])
+waves = Array[ExtResource("9_w6ld8")]([SubResource("Resource_xyusy")])
 enemy_scene = ExtResource("4_7a876")
 
 [node name="Spawner" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]

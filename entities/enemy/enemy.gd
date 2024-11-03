@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 signal died
 
-const SPEED = 5.0
+const SPEED = 2.0
 
 @export var nav_agent: NavigationAgent3D
 @export var max_health: int = 3
@@ -39,7 +39,7 @@ func attack():
 	#animation_player.stop()
 	velocity=Vector3.ZERO
 	if(attack_cooldown.is_stopped()):
-		target_nest.health-=1
+		target_nest.take_damage()
 		$SharkAttackNoise.play()
 		attack_cooldown.start()
 	return

@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://dftyfq434ra6a"]
+
+[ext_resource type="Script" path="res://scenes/lose_screen/lose_screen.gd" id="1_gqqau"]
+[ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_vmw3q"]
+[ext_resource type="FontFile" uid="uid://djdpk7o8qwjdw" path="res://assets/fonts/storm_gust/Storm Gust.ttf" id="2_k6v08"]
+[ext_resource type="PackedScene" uid="uid://cnkwewfuwl37d" path="res://assets/models/Shark.blend" id="4_eb68o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gjci5"]
+font = ExtResource("2_k6v08")
+font_size = 148
+font_color = Color(9.02452e-09, 0.0941875, 0.094879, 1)
+outline_size = 16
+shadow_size = 4
+shadow_color = Color(0.0885599, 0.0885599, 0.0885599, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ajuwt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7lou"]
+bg_color = Color(0.827451, 0.827451, 0.827451, 0.666667)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="Theme" id="Theme_r8sko"]
+Button/colors/font_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/colors/font_focus_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/colors/font_hover_color = Color(0, 0.25, 0.3, 1)
+Button/colors/font_outline_color = Color(0.992157, 0.992157, 0.992157, 1)
+Button/colors/font_pressed_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 100
+Button/fonts/font = ExtResource("2_k6v08")
+Button/styles/disabled = SubResource("StyleBoxEmpty_ajuwt")
+Button/styles/hover = SubResource("StyleBoxFlat_u7lou")
+Button/styles/normal = SubResource("StyleBoxFlat_u7lou")
+Button/styles/pressed = SubResource("StyleBoxFlat_u7lou")
+
+[node name="LoseScreen" type="Node3D"]
+script = ExtResource("1_gqqau")
+
+[node name="NavigationRegion3D" parent="." instance=ExtResource("1_vmw3q")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.763239, 0.34017, -0.549318, -0.122908, 0.758222, 0.640307, 0.634318, 0.556223, -0.536895, 41.6823, 7.69692, -17.559)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 621.0
+offset_bottom = 234.0
+text = "You Lose!"
+label_settings = SubResource("LabelSettings_gjci5")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -211.0
+offset_right = 621.0
+offset_bottom = -64.0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_r8sko")
+text = "Main Menu"
+
+[node name="Sharks" type="Node3D" parent="."]
+
+[node name="Shark" parent="Sharks" instance=ExtResource("4_eb68o")]
+transform = Transform3D(0.792119, 0, 0.610366, 0, 1, 0, -0.610366, 0, 0.792119, 39.6353, 1.60187, -12.0744)
+
+[node name="Shark2" parent="Sharks" instance=ExtResource("4_eb68o")]
+transform = Transform3D(-0.926745, 0, 0.37569, 0, 1, 0, -0.37569, 0, -0.926745, 43.1467, 1.60187, -10.6186)
+
+[node name="Shark8" parent="Sharks" instance=ExtResource("4_eb68o")]
+transform = Transform3D(0.975738, 0, -0.218944, 0, 1, 0, 0.218944, 0, 0.975738, 45.3595, 4.22647, -14.0368)
+
+[node name="Shark3" parent="Sharks" instance=ExtResource("4_eb68o")]
+transform = Transform3D(0.208304, 0, 0.978064, 0, 1, 0, -0.978064, 0, 0.208304, 40.915, 1.60187, -14.0261)
+
+[node name="Shark4" parent="Sharks" instance=ExtResource("4_eb68o")]
+transform = Transform3D(0.208304, 0, 0.978064, 0, 1, 0, -0.978064, 0, 0.208304, 42.0462, 1.60187, -8.1711)
+
+[node name="Shark7" parent="Sharks" instance=ExtResource("4_eb68o")]
+transform = Transform3D(0.26564, 0, 0.964072, 0, 1, 0, -0.964072, 0, 0.26564, 40.1984, 3.87743, -12.6032)
+
+[node name="Shark5" parent="Sharks" instance=ExtResource("4_eb68o")]
+transform = Transform3D(0.791042, 0, -0.611762, 0, 1, 0, 0.611762, 0, 0.791042, 46.6211, 1.62511, -13.4471)
+
+[node name="Shark6" parent="Sharks" instance=ExtResource("4_eb68o")]
+transform = Transform3D(0.143009, 0, -0.989721, 0, 1, 0, 0.989721, 0, 0.143009, 46.8389, 5.5797, -10.7106)
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

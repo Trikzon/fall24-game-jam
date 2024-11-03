@@ -1,12 +1,15 @@
 class_name Nest
 extends MeshInstance3D
-const MAX = 10
-var health
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	health=MAX
+
+@export var eggs: Node3D
+
+@onready var lose_scene: PackedScene = load("res://scenes/lose_screen/lose_screen.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(health<=0):
-		print("You lose!")
+	if eggs.get_child_count() <= 0:
+		get_tree().change_scene_to_packed(lose_scene)
+
+
+func take_damage():
+	eggs.get_children().pick_random().queue_free()

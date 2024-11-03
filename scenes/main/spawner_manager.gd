@@ -4,6 +4,8 @@ extends Node3D
 @export var waves: Array[Wave] = []
 @export var enemy_scene: PackedScene
 
+@onready var win_scene: PackedScene = load("res://scenes/win_screen/win_screen.tscn")
+
 var spawners: Array[Spawner] = []
 var enemies_spawned = 0
 var current_wave = 0
@@ -18,7 +20,7 @@ func _process(delta):
 	# Spawn next wave.
 	if enemies_spawned == 0:
 		if current_wave >= waves.size():
-			print("You Won!")
+			get_tree().change_scene_to_packed(win_scene)
 			return
 		
 		enemies_spawned = waves[current_wave].enemy_count
