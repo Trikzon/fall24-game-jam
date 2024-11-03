@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://iiko1puag0a8"]
+[gd_scene load_steps=9 format=3 uid="uid://iiko1puag0a8"]
 
 [ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_rog6u"]
 [ext_resource type="Script" path="res://scenes/start_screen/start_screen.gd" id="1_sokkl"]
@@ -29,20 +29,19 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 corner_detail = 16
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8ae0"]
-
 [sub_resource type="Theme" id="Theme_t4lt7"]
 Button/colors/font_color = Color(0, 0.0941176, 0.0941176, 1)
-Button/colors/font_focus_color = Color(0, 0.25098, 0.298039, 1)
+Button/colors/font_focus_color = Color(0, 0.0941176, 0.0941176, 1)
 Button/colors/font_hover_color = Color(0, 0.25, 0.3, 1)
 Button/colors/font_outline_color = Color(0.992157, 0.992157, 0.992157, 1)
+Button/colors/font_pressed_color = Color(0, 0.0941176, 0.0941176, 1)
 Button/constants/outline_size = 8
 Button/font_sizes/font_size = 100
 Button/fonts/font = ExtResource("2_yh34j")
 Button/styles/disabled = SubResource("StyleBoxEmpty_gnlrb")
 Button/styles/hover = SubResource("StyleBoxFlat_uf0fc")
 Button/styles/normal = SubResource("StyleBoxFlat_uf0fc")
-Button/styles/pressed = SubResource("StyleBoxEmpty_a8ae0")
+Button/styles/pressed = SubResource("StyleBoxFlat_uf0fc")
 
 [node name="StartScreen" type="Node3D"]
 script = ExtResource("1_sokkl")

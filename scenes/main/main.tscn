@@ -1,9 +1,63 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy2njnd0jev5t"]
+[gd_scene load_steps=12 format=3 uid="uid://dy2njnd0jev5t"]
 
 [ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_c8021"]
 [ext_resource type="PackedScene" uid="uid://ho38ers7rqok" path="res://entities/player/player.tscn" id="3_7void"]
 [ext_resource type="Script" path="res://entities/player/camera.gd" id="3_pbxv8"]
 [ext_resource type="PackedScene" uid="uid://de411ixbvfhml" path="res://entities/enemy/enemy.tscn" id="4_7a876"]
+[ext_resource type="FontFile" uid="uid://djdpk7o8qwjdw" path="res://assets/fonts/storm_gust/Storm Gust.ttf" id="5_kqx83"]
+[ext_resource type="Script" path="res://scenes/main/pause_ui.gd" id="5_vqf55"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_puhdw"]
+font = ExtResource("5_kqx83")
+font_size = 96
+font_color = Color(9.02452e-09, 0.0941875, 0.094879, 1)
+outline_size = 16
+shadow_size = 4
+shadow_color = Color(0.0885599, 0.0885599, 0.0885599, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gnlrb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uf0fc"]
+bg_color = Color(0.827451, 0.827451, 0.827451, 0.666667)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="Theme" id="Theme_neeuj"]
+Button/colors/font_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/colors/font_focus_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/colors/font_hover_color = Color(0, 0.25, 0.3, 1)
+Button/colors/font_outline_color = Color(0.992157, 0.992157, 0.992157, 1)
+Button/colors/font_pressed_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 100
+Button/fonts/font = ExtResource("5_kqx83")
+Button/styles/disabled = SubResource("StyleBoxEmpty_gnlrb")
+Button/styles/hover = SubResource("StyleBoxFlat_uf0fc")
+Button/styles/normal = SubResource("StyleBoxFlat_uf0fc")
+Button/styles/pressed = SubResource("StyleBoxFlat_uf0fc")
+
+[sub_resource type="Theme" id="Theme_tw3cc"]
+Button/colors/font_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/colors/font_focus_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/colors/font_hover_color = Color(0, 0.25, 0.3, 1)
+Button/colors/font_outline_color = Color(0.992157, 0.992157, 0.992157, 1)
+Button/colors/font_pressed_color = Color(0, 0.0941176, 0.0941176, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 100
+Button/fonts/font = ExtResource("5_kqx83")
+Button/styles/disabled = SubResource("StyleBoxEmpty_gnlrb")
+Button/styles/hover = SubResource("StyleBoxFlat_uf0fc")
+Button/styles/normal = SubResource("StyleBoxFlat_uf0fc")
+Button/styles/pressed = SubResource("StyleBoxFlat_uf0fc")
 
 [node name="Main" type="Node3D"]
 
@@ -27,5 +81,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7165, 6.17813)
 camera_target = NodePath("../Camera/CameraTarget")
 
+[node name="PauseUI" type="ColorRect" parent="."]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17, 0.17, 0.17, 0.588235)
+script = ExtResource("5_vqf55")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -150.0
+offset_right = 244.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="PauseUI/VBoxContainer"]
+layout_mode = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_puhdw")
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseUI/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_neeuj")
+theme_override_font_sizes/font_size = 48
+text = "Resume"
+
+[node name="ToMainMenuButton" type="Button" parent="PauseUI/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_tw3cc")
+theme_override_font_sizes/font_size = 48
+text = "Quit To Main Menu"
+
 [node name="Enemy" parent="." instance=ExtResource("4_7a876")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87161, 1.44325, 55.6529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.899216, -19.4558)
+
+[connection signal="pressed" from="PauseUI/VBoxContainer/ResumeButton" to="PauseUI" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseUI/VBoxContainer/ToMainMenuButton" to="PauseUI" method="_on_to_main_menu_button_pressed"]

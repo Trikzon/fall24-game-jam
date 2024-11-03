@@ -5,14 +5,22 @@ extends CharacterBody3D
 const SPEED = 5.0
 
 @export var nav_agent: NavigationAgent3D
+@export var max_health: int = 3
 
 @onready var animation_player: AnimationPlayer = $SharkBlendModel/AnimationPlayer
+
+var health = max_health
+var is_dead = false
 
 
 func _ready():
 	nav_agent.target_position = Vector3.ZERO
 
+
 func _physics_process(delta):
+	if is_dead:
+		return
+	
 	if NavigationServer3D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 		return
 	if nav_agent.is_navigation_finished():
@@ -27,9 +35,21 @@ func _physics_process(delta):
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
+	if is_dead:
+		return
+	
 	velocity = safe_velocity
 	
 	rotation.y = lerp_angle(rotation.y, atan2(velocity.x, velocity.z), 10 * 0.016)
 	animation_player.play("Swim")
 	
 	move_and_slide()
+
+
+func take_damage():
+	health -= 1
+	if health <= 0 and not is_dead:
+		is_dead = true
+		animation_player.play("Die")
+		await animation_player.animation_finished
+		queue_free()
