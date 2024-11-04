@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://dy2njnd0jev5t"]
 
-[ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_c8021"]
+[ext_resource type="PackedScene" uid="uid://ypdrrtw67ou8" path="res://scenes/terrain/terrain.tscn" id="1_c8021"]
 [ext_resource type="PackedScene" uid="uid://ho38ers7rqok" path="res://entities/player/player.tscn" id="3_7void"]
 [ext_resource type="Script" path="res://entities/player/camera.gd" id="3_pbxv8"]
 [ext_resource type="PackedScene" uid="uid://de411ixbvfhml" path="res://entities/enemy/enemy.tscn" id="4_7a876"]
