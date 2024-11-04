@@ -22,14 +22,12 @@ func _process(delta):
 		if current_wave >= waves.size():
 			get_tree().change_scene_to_packed(win_scene)
 			return
-		
 		enemies_spawned = waves[current_wave].enemy_count
+		current_wave += 1
 		for i in range(enemies_spawned):
 			var enemy = spawners.pick_random().spawn_enemy(enemy_scene, target_nest)
 			enemy.died.connect(_on_enemy_died)
 			await get_tree().create_timer(0.5).timeout
-			
-		current_wave += 1
 
 
 func _on_enemy_died():

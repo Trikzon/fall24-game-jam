@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dy2njnd0jev5t"]
+[gd_scene load_steps=29 format=3 uid="uid://dy2njnd0jev5t"]
 
 [ext_resource type="PackedScene" uid="uid://14qsigm4ehuk" path="res://scenes/terrain/terrain.tscn" id="1_c8021"]
 [ext_resource type="PackedScene" uid="uid://ho38ers7rqok" path="res://entities/player/player.tscn" id="3_7void"]
@@ -11,7 +11,49 @@
 [ext_resource type="PackedScene" uid="uid://dkscjy4x44ql5" path="res://entities/spawner/spawner.tscn" id="8_ilgwf"]
 [ext_resource type="Script" path="res://resources/wave/wave.gd" id="9_w6ld8"]
 [ext_resource type="PackedScene" uid="uid://bklpqsoc7k6fw" path="res://assets/models/Eggs.blend" id="11_hhgy8"]
+[ext_resource type="Script" path="res://scenes/main/wave_ui.gd" id="11_xesab"]
+[ext_resource type="FontFile" uid="uid://c8tli8g8cmjjk" path="res://assets/fonts/BABK/BABYK___.TTF" id="12_3tlre"]
 [ext_resource type="AudioStream" uid="uid://caotvhhwelnop" path="res://assets/music/cinematic-tense-trailer-198846.mp3" id="12_yfb3b"]
+
+[sub_resource type="Resource" id="Resource_xyusy"]
+script = ExtResource("9_w6ld8")
+enemy_count = 10
+
+[sub_resource type="Resource" id="Resource_rakb8"]
+script = ExtResource("9_w6ld8")
+enemy_count = 20
+
+[sub_resource type="Resource" id="Resource_bm05c"]
+script = ExtResource("9_w6ld8")
+enemy_count = 30
+
+[sub_resource type="BoxMesh" id="BoxMesh_0vjt7"]
+resource_local_to_scene = true
+size = Vector3(10, 1, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ousas"]
+resource_local_to_scene = true
+size = Vector3(20, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8taya"]
+resource_local_to_scene = true
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xvcck"]
+resource_local_to_scene = true
+size = Vector3(10, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cx6np"]
+resource_local_to_scene = true
+size = Vector3(20, 1, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_byqgy"]
+font = ExtResource("12_3tlre")
+font_size = 48
+font_color = Color(9.02452e-09, 0.0941875, 0.094879, 1)
+outline_size = 16
+shadow_size = 4
+shadow_color = Color(0.0885599, 0.0885599, 0.0885599, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_puhdw"]
 font = ExtResource("5_kqx83")
@@ -65,18 +107,6 @@ Button/styles/hover = SubResource("StyleBoxFlat_uf0fc")
 Button/styles/normal = SubResource("StyleBoxFlat_uf0fc")
 Button/styles/pressed = SubResource("StyleBoxFlat_uf0fc")
 
-[sub_resource type="Resource" id="Resource_xyusy"]
-script = ExtResource("9_w6ld8")
-enemy_count = 5
-
-[sub_resource type="BoxMesh" id="BoxMesh_0vjt7"]
-resource_local_to_scene = true
-size = Vector3(5, 1, 5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ousas"]
-resource_local_to_scene = true
-size = Vector3(2, 1, 1)
-
 [node name="Main" type="Node3D"]
 
 [node name="Terrain" parent="." instance=ExtResource("1_c8021")]
@@ -95,8 +125,78 @@ spring_length = 5.0
 [node name="Camera3D" type="Camera3D" parent="Camera/CameraTarget/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
+[node name="Player" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_7void")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98116, 6.17813)
+camera_target = NodePath("../Camera/CameraTarget")
+
+[node name="Nest" parent="." node_paths=PackedStringArray("eggs") instance=ExtResource("7_1agqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.7396, 2.25645, -13.6177)
+eggs = NodePath("../Eggs")
+
+[node name="SpawnerManager" type="Node3D" parent="." node_paths=PackedStringArray("target_nest")]
+script = ExtResource("8_fk17j")
+target_nest = NodePath("../Nest")
+waves = Array[ExtResource("9_w6ld8")]([SubResource("Resource_xyusy"), SubResource("Resource_rakb8"), SubResource("Resource_bm05c")])
+enemy_scene = ExtResource("4_7a876")
+
+[node name="Spawner" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 171.644, 1.77093, 24.2669)
+mesh = SubResource("BoxMesh_0vjt7")
+skeleton = NodePath("../..")
+
+[node name="Spawner2" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
+transform = Transform3D(0.98246, 0, 0.186473, 0, 1, 0, -0.186473, 0, 0.98246, -34.1032, 8.28499, -48.4973)
+mesh = SubResource("BoxMesh_ousas")
+skeleton = NodePath("../Spawner")
+
+[node name="Spawner3" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.4091, 3.19501, 35.6276)
+mesh = SubResource("BoxMesh_8taya")
+
+[node name="Spawner4" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 139.423, 1.40541, -69.9882)
+mesh = SubResource("BoxMesh_xvcck")
+
+[node name="Spawner5" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116.153, 2.01654, 27.3207)
+mesh = SubResource("BoxMesh_cx6np")
+
+[node name="Eggs" parent="." instance=ExtResource("11_hhgy8")]
+transform = Transform3D(4.055, 0, 0, 0, 4.055, 0, 0, 0, 4.055, 39.7943, 2.21933, -15.6213)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("12_yfb3b")
+volume_db = -28.965
+autoplay = true
+parameters/looping = true
+
+[node name="WaveUI" type="Control" parent="." node_paths=PackedStringArray("spawner_manager")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_xesab")
+spawner_manager = NodePath("../SpawnerManager")
+
+[node name="Label" type="Label" parent="WaveUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.0
+offset_top = 30.0
+offset_right = 60.0
+offset_bottom = 85.0
+grow_horizontal = 2
+text = "Wave 123456789"
+label_settings = SubResource("LabelSettings_byqgy")
+
 [node name="PauseUI" type="ColorRect" parent="."]
 process_mode = 3
+process_priority = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -139,40 +239,6 @@ mouse_default_cursor_shape = 2
 theme = SubResource("Theme_tw3cc")
 theme_override_font_sizes/font_size = 48
 text = "Quit To Main Menu"
-
-[node name="Player" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_7void")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98116, 6.17813)
-camera_target = NodePath("../Camera/CameraTarget")
-
-[node name="Nest" parent="." instance=ExtResource("7_1agqp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.7396, 2.25645, -13.6177)
-eggs = NodePath("../Eggs")
-
-[node name="SpawnerManager" type="Node3D" parent="." node_paths=PackedStringArray("target_nest")]
-script = ExtResource("8_fk17j")
-target_nest = NodePath("../Nest")
-waves = Array[ExtResource("9_w6ld8")]([SubResource("Resource_xyusy")])
-enemy_scene = ExtResource("4_7a876")
-
-[node name="Spawner" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.0289, 1.77093, -0.633354)
-mesh = SubResource("BoxMesh_0vjt7")
-skeleton = NodePath("../..")
-
-[node name="Spawner2" parent="SpawnerManager" instance=ExtResource("8_ilgwf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.02677, 1.95303, -39.5999)
-mesh = SubResource("BoxMesh_ousas")
-skeleton = NodePath("../Spawner")
-
-[node name="Eggs" parent="." instance=ExtResource("11_hhgy8")]
-transform = Transform3D(4.055, 0, 0, 0, 4.055, 0, 0, 0, 4.055, 39.7943, 2.21933, -15.6213)
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("12_yfb3b")
-volume_db = -28.965
-autoplay = true
-parameters/looping = true
 
 [connection signal="pressed" from="PauseUI/VBoxContainer/ResumeButton" to="PauseUI" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseUI/VBoxContainer/ToMainMenuButton" to="PauseUI" method="_on_to_main_menu_button_pressed"]

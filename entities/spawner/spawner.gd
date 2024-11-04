@@ -1,6 +1,9 @@
 class_name Spawner
 extends MeshInstance3D
 
+func _ready() -> void:
+	visible = false
+
 
 func spawn_enemy(enemy_scene: PackedScene, target_nest: Node3D) -> Node3D:
 	var enemy = enemy_scene.instantiate()

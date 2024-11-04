@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 signal died
 
-const SPEED = 2.0
+const SPEED = 5.0
 
 @export var nav_agent: NavigationAgent3D
 @export var max_health: int = 3
@@ -14,14 +14,21 @@ const SPEED = 2.0
 var health = max_health
 var is_dead = false
 
+var counter = 0
+
+func _ready():
+	nav_agent.target_position = target_nest.global_position
+
 
 func _physics_process(delta):
-	if is_dead:
+	counter += 1
+	if counter % 20 != 0:
+		move_and_slide()
 		return
+	
 	if target_nest.global_position.distance_to(position)<3:
 		attack()
 		return
-	nav_agent.target_position = target_nest.global_position
 	
 	if NavigationServer3D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 		return

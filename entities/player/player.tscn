@@ -45,18 +45,18 @@ one_shot = true
 
 [node name="AttackNoise" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_mimdx")
-volume_db = -22.784
+volume_db = -15.0
 max_db = 1.378
 pitch_scale = 1.36
 
 [node name="Idle1" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_bwfmm")
-volume_db = -20.645
+volume_db = -15.0
 pitch_scale = 1.39
 
 [node name="DashSFX" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_gbxbf")
-volume_db = -34.235
+volume_db = -20.0
 max_db = 1.13
 pitch_scale = 0.97
 
@@ -115,6 +115,7 @@ text = "Shift"
 horizontal_alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Control/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 

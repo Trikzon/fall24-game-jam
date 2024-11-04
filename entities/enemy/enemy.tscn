@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://d0ducs7pebmlb" path="res://assets/orkanoises/Shark Death.mp3" id="4_2ce7i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tc1bq"]
-height = 3.0
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent")]
 script = ExtResource("1_8brl8")
@@ -20,9 +19,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.
 shape = SubResource("CapsuleShape3D_tc1bq")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-avoidance_enabled = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="SharkDeathNoise" type="AudioStreamPlayer3D" parent="."]
