@@ -1,14 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://brmwnh2idrvhu"]
+[gd_scene load_steps=5 format=3 uid="uid://wx78hhrhgeo8"]
 
 [ext_resource type="PackedScene" uid="uid://yim6r6v4xxo7" path="res://assets/models/pufferfishblow.blend" id="1_0cw3r"]
+[ext_resource type="Script" path="res://entities/puffer.gd" id="1_rijc0"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_c480a"]
-radius = 4.408
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogybb"]
+radius = 0.45
+height = 1.2
 
-[node name="Puffer" type="RigidBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2n25r"]
+radius = 5.0
+height = 12.5
 
-[node name="pufferfishblow" parent="." instance=ExtResource("1_0cw3r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.242241, 0, -0.301786)
+[node name="Puffer" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_rijc0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_c480a")
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -0.04383, 0, -0.291292)
+shape = SubResource("CapsuleShape3D_ogybb")
+disabled = true
+
+[node name="pufferfishblow" parent="." instance=ExtResource("1_0cw3r")]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, -0.0293527, 0, -0.301786)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -0.04383, 0, -0.291292)
+shape = SubResource("CapsuleShape3D_ogybb")
+
+[node name="Area3D2" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 1.77636e-14, -1.05879e-21, 0, -4.37114e-08, -1, -1.77636e-14, 1, -4.37114e-08, -0.0173781, 0.0424359, 5.52745)
+shape = SubResource("CapsuleShape3D_2n25r")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_2_body_entered"]

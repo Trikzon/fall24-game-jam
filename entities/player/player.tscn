@@ -129,3 +129,6 @@ expand_mode = 4
 layout_mode = 2
 text = "E"
 horizontal_alignment = 1
+[node name="PufferCooldown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true

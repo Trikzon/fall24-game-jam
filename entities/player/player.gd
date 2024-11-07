@@ -13,8 +13,9 @@ const RISE_SPEED = 5.0
 @onready var blast_cooldown_timer: Timer = $BlastCooldownTimer
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var puffer_cooldown_timer: Timer = $PufferCooldown
 @onready var incrementalDash = 1
-
+@onready var directionPuff = Vector3.ZERO
 func _process(delta):
 	#attack
 	if Input.is_action_just_pressed("Attack") and blast_cooldown_timer.is_stopped():
@@ -50,6 +51,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("player_forward"):
 		velocity -= camera_target.transform.basis.z * ACCELERATION * delta
+		directionPuff=camera_target.transform.basis.z
 		rotation.y = lerp_angle(rotation.y, camera_target.rotation.y, 10 * delta)
 		rotation.x = lerp_angle(rotation.x, camera_target.rotation.x, 10 * delta)
 		if not $OrkaBlendModel.get_child(1).is_playing():
@@ -62,10 +64,16 @@ func _physics_process(delta):
 	#if not ground_raycast_front.is_colliding() and not ground_raycast_front.is_colliding():
 		#velocity += get_gravity() * delta
 		#puffer
-	if Input.is_action_just_pressed("puffer"):
+	if Input.is_action_just_pressed("puffer")and puffer_cooldown_timer.is_stopped():
+		puffer_cooldown_timer.start()
 		puffer.instantiate()
-	
-		
+		var pufferfish = puffer.instantiate()
+		add_sibling(pufferfish)
+		pufferfish.global_position.x = global_position.x
+		pufferfish.global_position.y = global_position.y + 2
+		pufferfish.global_position.z = global_position.z
+		pufferfish.player = self
+		pufferfish.playerV=-directionPuff * MAX_SPEED
 	
 	velocity = velocity.clamp(Vector3.ONE * -MAX_SPEED, Vector3.ONE * MAX_SPEED)
 	if(Input.is_action_pressed("Rise")):
